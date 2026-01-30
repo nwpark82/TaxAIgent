@@ -1,0 +1,393 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Pretendard 폰트 */
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
+
+@layer base {
+  html {
+    font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    @apply bg-gray-50 text-gray-900;
+    @apply dark:bg-gray-900 dark:text-gray-100;
+    background-image:
+      radial-gradient(ellipse at 0% 0%, rgba(99, 102, 241, 0.05) 0%, transparent 50%),
+      radial-gradient(ellipse at 100% 100%, rgba(118, 75, 162, 0.05) 0%, transparent 50%);
+    min-height: 100vh;
+  }
+
+  .dark body {
+    background-image:
+      radial-gradient(ellipse at 0% 0%, rgba(99, 102, 241, 0.1) 0%, transparent 50%),
+      radial-gradient(ellipse at 100% 100%, rgba(118, 75, 162, 0.1) 0%, transparent 50%);
+  }
+
+  /* 선택 스타일 */
+  ::selection {
+    @apply bg-primary-200 text-primary-900;
+  }
+
+  .dark ::selection {
+    @apply bg-primary-700 text-primary-100;
+  }
+}
+
+@layer components {
+  /* ===== 버튼 시스템 ===== */
+  .btn {
+    @apply relative inline-flex items-center justify-center gap-2;
+    @apply px-5 py-2.5 rounded-xl font-medium;
+    @apply transition-all duration-200 ease-out;
+    @apply focus:outline-none focus:ring-2 focus:ring-offset-2;
+    @apply disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+
+  .btn-primary {
+    @apply text-white;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    box-shadow: 0 4px 14px 0 rgba(102, 126, 234, 0.35);
+    @apply focus:ring-primary-500;
+  }
+  .btn-primary:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px 0 rgba(102, 126, 234, 0.45);
+  }
+  .btn-primary:active:not(:disabled) {
+    transform: translateY(0);
+  }
+
+  .btn-secondary {
+    @apply bg-white text-gray-700 border border-gray-200;
+    @apply hover:bg-gray-50 hover:border-gray-300;
+    @apply focus:ring-gray-300;
+    @apply dark:bg-gray-800 dark:text-gray-200 dark:border-gray-700;
+    @apply dark:hover:bg-gray-700 dark:hover:border-gray-600;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  }
+
+  .btn-outline {
+    @apply bg-transparent text-primary-600 border-2 border-primary-200;
+    @apply hover:bg-primary-50 hover:border-primary-300;
+    @apply focus:ring-primary-300;
+    @apply dark:text-primary-400 dark:border-primary-700;
+    @apply dark:hover:bg-primary-900/30 dark:hover:border-primary-600;
+  }
+
+  .btn-ghost {
+    @apply bg-transparent text-gray-600;
+    @apply hover:bg-gray-100 hover:text-gray-900;
+    @apply focus:ring-gray-300;
+    @apply dark:text-gray-300 dark:hover:bg-gray-800 dark:hover:text-gray-100;
+  }
+
+  .btn-success {
+    @apply text-white;
+    background: linear-gradient(135deg, #10b981 0%, #34d399 100%);
+    box-shadow: 0 4px 14px 0 rgba(16, 185, 129, 0.35);
+    @apply focus:ring-success-500;
+  }
+
+  .btn-danger {
+    @apply bg-error-500 text-white;
+    @apply hover:bg-error-600;
+    @apply focus:ring-error-500;
+  }
+
+  .btn-icon {
+    @apply w-10 h-10 p-0 rounded-full;
+  }
+
+  .btn-sm {
+    @apply px-3 py-1.5 text-sm rounded-lg;
+  }
+
+  .btn-lg {
+    @apply px-6 py-3 text-lg rounded-2xl;
+  }
+
+  /* ===== 입력 필드 ===== */
+  .input {
+    @apply w-full px-4 py-3 rounded-xl;
+    @apply bg-white border border-gray-200;
+    @apply text-gray-900 placeholder-gray-400;
+    @apply transition-all duration-200;
+    @apply focus:outline-none focus:ring-2 focus:ring-primary-500/20 focus:border-primary-400;
+    @apply disabled:bg-gray-50 disabled:text-gray-500;
+    @apply dark:bg-gray-800 dark:border-gray-700 dark:text-gray-100 dark:placeholder-gray-500;
+    @apply dark:focus:ring-primary-500/30 dark:focus:border-primary-500;
+    @apply dark:disabled:bg-gray-900 dark:disabled:text-gray-600;
+  }
+
+  .input-error {
+    @apply border-error-300 focus:ring-error-500/20 focus:border-error-400;
+    @apply dark:border-error-600 dark:focus:border-error-500;
+  }
+
+  /* ===== 카드 시스템 ===== */
+  .card {
+    @apply relative overflow-hidden;
+    @apply bg-white/80 backdrop-blur-sm;
+    @apply rounded-2xl p-6;
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    box-shadow:
+      0 4px 6px -1px rgba(0, 0, 0, 0.05),
+      0 10px 15px -3px rgba(0, 0, 0, 0.05),
+      0 20px 25px -5px rgba(0, 0, 0, 0.02);
+  }
+
+  .dark .card {
+    @apply bg-gray-800/80;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow:
+      0 4px 6px -1px rgba(0, 0, 0, 0.2),
+      0 10px 15px -3px rgba(0, 0, 0, 0.2);
+  }
+
+  .card-hover {
+    @apply transition-all duration-300 cursor-pointer;
+  }
+  .card-hover:hover {
+    transform: translateY(-4px);
+    box-shadow:
+      0 10px 20px -5px rgba(0, 0, 0, 0.08),
+      0 20px 25px -5px rgba(0, 0, 0, 0.04);
+  }
+
+  .dark .card-hover:hover {
+    box-shadow:
+      0 10px 20px -5px rgba(0, 0, 0, 0.3),
+      0 20px 25px -5px rgba(0, 0, 0, 0.2);
+  }
+
+  .card-gradient {
+    background: linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.7) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+  }
+
+  .dark .card-gradient {
+    background: linear-gradient(135deg, rgba(30,41,59,0.9) 0%, rgba(30,41,59,0.7) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .card-featured {
+    background: linear-gradient(white, white) padding-box,
+                linear-gradient(135deg, #667eea 0%, #764ba2 100%) border-box;
+    border: 2px solid transparent;
+  }
+
+  .card-success {
+    @apply border-l-4 border-l-success-500;
+    background: linear-gradient(135deg, rgba(16, 185, 129, 0.08) 0%, rgba(52, 211, 153, 0.03) 100%);
+  }
+
+  .card-warning {
+    @apply border-l-4 border-l-warning-500;
+    background: linear-gradient(135deg, rgba(245, 158, 11, 0.08) 0%, rgba(251, 191, 36, 0.03) 100%);
+  }
+
+  .card-error {
+    @apply border-l-4 border-l-error-500;
+    background: linear-gradient(135deg, rgba(239, 68, 68, 0.08) 0%, rgba(248, 113, 113, 0.03) 100%);
+  }
+
+  /* ===== 라벨 ===== */
+  .label {
+    @apply block text-sm font-medium text-gray-700 mb-1.5;
+    @apply dark:text-gray-300;
+  }
+
+  /* ===== 배지 ===== */
+  .badge {
+    @apply inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium;
+  }
+
+  .badge-primary {
+    @apply bg-primary-100 text-primary-700;
+    @apply dark:bg-primary-900/50 dark:text-primary-300;
+  }
+
+  .badge-success {
+    @apply bg-success-100 text-success-700;
+    @apply dark:bg-success-900/50 dark:text-success-300;
+  }
+
+  .badge-warning {
+    @apply bg-warning-100 text-warning-700;
+    @apply dark:bg-warning-900/50 dark:text-warning-300;
+  }
+
+  .badge-error {
+    @apply bg-error-100 text-error-700;
+    @apply dark:bg-error-900/50 dark:text-error-300;
+  }
+
+  .badge-gray {
+    @apply bg-gray-100 text-gray-700;
+    @apply dark:bg-gray-800 dark:text-gray-300;
+  }
+
+  /* ===== 진행 바 ===== */
+  .progress-bar {
+    @apply h-2 bg-gray-100 rounded-full overflow-hidden;
+    @apply dark:bg-gray-700;
+  }
+
+  .progress-bar-fill {
+    @apply h-full rounded-full transition-all duration-500 ease-out;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  }
+
+  .progress-bar-success .progress-bar-fill {
+    background: linear-gradient(135deg, #10b981 0%, #34d399 100%);
+  }
+
+  /* ===== 아바타 ===== */
+  .avatar {
+    @apply relative inline-flex items-center justify-center;
+    @apply rounded-full bg-gradient-primary text-white font-medium;
+    @apply overflow-hidden;
+  }
+
+  .avatar-sm { @apply w-8 h-8 text-sm; }
+  .avatar-md { @apply w-10 h-10 text-base; }
+  .avatar-lg { @apply w-12 h-12 text-lg; }
+
+  /* ===== 스켈레톤 로더 ===== */
+  .skeleton {
+    @apply bg-gray-200 rounded-lg animate-pulse;
+    @apply dark:bg-gray-700;
+  }
+
+  /* ===== 네비게이션 ===== */
+  .nav-item {
+    @apply flex items-center gap-3 px-4 py-3 rounded-xl;
+    @apply text-gray-600 font-medium;
+    @apply transition-all duration-200;
+    @apply dark:text-gray-400;
+  }
+
+  .nav-item:hover {
+    @apply bg-gray-100 text-gray-900;
+    @apply dark:bg-gray-800 dark:text-gray-100;
+  }
+
+  .nav-item-active {
+    @apply bg-primary-50 text-primary-700;
+    @apply dark:bg-primary-900/50 dark:text-primary-300;
+  }
+
+  /* ===== 메시지 버블 ===== */
+  .message-bubble {
+    @apply max-w-[85%] rounded-2xl px-4 py-3;
+  }
+
+  .message-user {
+    @apply text-white;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    @apply rounded-br-md;
+  }
+
+  .message-assistant {
+    @apply bg-white border border-gray-100 shadow-soft;
+    @apply rounded-bl-md;
+    @apply dark:bg-gray-800 dark:border-gray-700;
+  }
+
+  /* ===== 구분선 ===== */
+  .divider {
+    @apply border-t border-gray-200;
+    @apply dark:border-gray-700;
+  }
+
+  /* ===== 페이지 컨테이너 ===== */
+  .page-container {
+    @apply space-y-6 pb-24 lg:pb-6;
+  }
+
+  .page-title {
+    @apply text-h1 text-gray-900;
+    @apply dark:text-gray-100;
+  }
+
+  .section-title {
+    @apply text-h3 text-gray-900 mb-4;
+    @apply dark:text-gray-100;
+  }
+}
+
+@layer utilities {
+  /* 텍스트 그라데이션 */
+  .text-gradient {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  }
+
+  /* 글래스 효과 */
+  .glass {
+    @apply bg-white/70 backdrop-blur-md;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+  }
+
+  .dark .glass {
+    @apply bg-gray-900/70;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  /* 숨김 스크롤바 */
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* 터치 타겟 */
+  .touch-target {
+    @apply min-h-[44px] min-w-[44px];
+  }
+}
+
+/* ===== 커스텀 스크롤바 ===== */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-gray-300 rounded-full;
+  transition: background 0.2s;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-gray-400;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  @apply bg-gray-600;
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+  @apply bg-gray-500;
+}
+
+/* ===== Framer Motion 기본 ===== */
+.motion-safe {
+  @media (prefers-reduced-motion: no-preference) {
+    animation: none;
+  }
+}
+
+/* ===== 토스트 스타일 오버라이드 ===== */
+[data-sonner-toast] {
+  @apply rounded-xl shadow-soft-lg;
+}

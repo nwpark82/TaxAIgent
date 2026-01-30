@@ -1,0 +1,10 @@
+export { Hero } from './Hero';
+export { Comparison } from './Comparison';
+export { Features } from './Features';
+export { HowItWorks } from './HowItWorks';
+export { Pricing } from './Pricing';
+export { FAQ } from './FAQ';
+export { Testimonials } from './Testimonials';
+export { Contact } from './Contact';
+export { FinalCTA } from './FinalCTA';
+export { Footer } from './Footer';
